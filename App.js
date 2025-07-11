@@ -14,10 +14,10 @@ import Register from './screens/Register';
 
 const Stack = createNativeStackNavigator();
 
-function RegisterStack(){
+function LoginStack(){
   return(
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login}/>
+      <Stack.Screen name="Iniciar sesión" component={Login}/>
       <Stack.Screen name="Registrar" component={Register}/>
     </Stack.Navigator>
   );
@@ -38,7 +38,7 @@ export default function App() {
   const isAuthenticated = false;
   return (
     <NavigationContainer>
-      {isAuthenticated ? <AppStack/> : <RegisterStack/>}
+      {isAuthenticated ? <AppStack/> : <LoginStack/>}
     </NavigationContainer>
   );
 }
