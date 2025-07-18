@@ -44,7 +44,7 @@ export default function Login({ navigation }) {
                     />
                 )}
                 />
-                {errors.mail && <Text>{errors.mail.message}</Text>}
+                {errors.mail && <Text style={styles.textoError}>{errors.mail.message}</Text>}
 
                 <Text style={styles.campoTexto}>Nombre</Text>
                 <Controller
@@ -61,7 +61,7 @@ export default function Login({ navigation }) {
                     />
                 )}
                 />
-                {errors.nombre && <Text>{errors.nombre.message}</Text>}
+                {errors.nombre && <Text style={styles.textoError}>{errors.nombre.message}</Text>}
                 <Text style={styles.campoTexto}>Contraseña</Text>
                 <Controller
                 control={control}
@@ -80,7 +80,7 @@ export default function Login({ navigation }) {
                     />
                 )}
                 />
-                {errors.contrasena && <Text>{errors.contrasena.message}</Text>}
+                {errors.contrasena && <Text style={styles.textoError}>{errors.contrasena.message}</Text>}
                 <Text style={styles.campoTexto}>Foto de perfil</Text>
                 <Controller
                 control={control}
@@ -96,14 +96,13 @@ export default function Login({ navigation }) {
                     />
                 )}
                 />
-                {errors.foto && <Text>{errors.foto.message}</Text>}
-                <Pressable onPress={() => navigation.navigate('Registrar')}>
-                    <Text style={styles.noCuenta}>¿No tienes una cuenta?</Text>
+                {errors.foto && <Text style={styles.textoError}>{errors.foto.message}</Text>}
+                <Pressable onPress={() => navigation.navigate('Iniciar sesión')}>
+                    <Text style={styles.noCuenta}>Iniciar sesión</Text>
                 </Pressable>
-                <Pressable>
-                    <Text style={styles.noCuenta}>¿Olvidaste tu contraseña?</Text>
-                </Pressable>
-                <Pressable style={styles.boton} onPress={handleSubmit(onSubmit)}><Text style={styles.textButton}>Enviar</Text></Pressable>
+                <View style={styles.buttonCont}>
+                    <Pressable style={styles.boton} onPress={handleSubmit(onSubmit)}><Text style={styles.textButton}>Enviar</Text></Pressable>
+                </View>
             </View>
         </View>
     );
@@ -135,7 +134,10 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
     },
     contenido: {  
-      width: '40%',
+      width: '40%',    
+      backgroundColor: 'white',
+      padding: 15,
+      borderRadius: 15
     },
     noCuenta: {
         fontStyle: 'italic',
@@ -154,4 +156,13 @@ const styles = StyleSheet.create({
       color: 'white',
       fontSize: 16,
     },
+    buttonCont: {
+        width: '100%',
+        justifyContent: 'center',
+        alignContent: 'center'
+    },
+
+    textoError: {
+        color: 'red'
+    }
 });
