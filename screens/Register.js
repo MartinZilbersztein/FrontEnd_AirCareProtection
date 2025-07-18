@@ -100,6 +100,9 @@ export default function Login({ navigation }) {
                 <Pressable onPress={() => navigation.navigate('Registrar')}>
                     <Text style={styles.noCuenta}>¿No tienes una cuenta?</Text>
                 </Pressable>
+                <Pressable>
+                    <Text style={styles.noCuenta}>¿Olvidaste tu contraseña?</Text>
+                </Pressable>
                 <Pressable style={styles.boton} onPress={handleSubmit(onSubmit)}><Text style={styles.textButton}>Enviar</Text></Pressable>
             </View>
         </View>
