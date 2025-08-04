@@ -3,6 +3,8 @@ import { useForm, Controller } from 'react-hook-form';
 import { TextInput, Button, View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Pressable } from 'react-native-web';
+import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
+import ElegirFoto from '../components/ElegirFoto';
 
 export default function Login({ navigation }) {
     const { control, handleSubmit, formState: {errors} } = useForm({
@@ -96,6 +98,7 @@ export default function Login({ navigation }) {
                     />
                 )}
                 />
+                <ElegirFoto/>
                 {errors.foto && <Text style={styles.textoError}>{errors.foto.message}</Text>}
                 <Pressable onPress={() => navigation.navigate('Iniciar sesión')}>
                     <Text style={styles.noCuenta}>Iniciar sesión</Text>
