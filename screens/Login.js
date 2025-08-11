@@ -13,8 +13,7 @@ export default function Login({ navigation }) {
         }
     });
     const onSubmit = (data) => {
-        navigation.navigate('EnviadoExito');
-
+        
         //No sé si conviene renderizarlo o directamente crear una nueva screen(?
     }
     return (
@@ -86,7 +85,7 @@ export default function Login({ navigation }) {
                 <Pressable>
                     <Text style={styles.noCuenta}>¿Olvidaste tu contraseña?</Text>
                 </Pressable>
-                <Pressable style={styles.boton} onPress={handleSubmit(onSubmit)}><Text style={styles.textButton}>Enviar</Text></Pressable>
+                <Pressable style={styles.boton} onPress={handleSubmit(onSubmit)}><Text style={styles.textButton}>Iniciar sesión</Text></Pressable>
             </View>
         </View>
     );

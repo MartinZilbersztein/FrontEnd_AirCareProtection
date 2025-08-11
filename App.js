@@ -34,11 +34,23 @@ function AppStack(){
   );
 }
 
+const Tab = createBottomTabNavigator();
+function Tabs(){
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={Home}/>
+      <Tab.Screen name="Scenes" component={Scenes}/>
+      <Tab.Screen name="Historial" component={Historial}/>
+      <Tab.Screen name="Ajustes" component={Ajustes}/>
+    </Tab.Navigator>
+  )
+}
+
 export default function App() {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   return (
     <NavigationContainer>
-      {isAuthenticated ? <AppStack/> : <LoginStack/>}
+      {isAuthenticated ? <AppStack/> : <LoginStack/> }
     </NavigationContainer>
   );
 }

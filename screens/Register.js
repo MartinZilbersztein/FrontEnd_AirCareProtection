@@ -25,6 +25,9 @@ export default function Login({ navigation }) {
         <View style={styles.container}>
             <View style={styles.contenido}>
                 <Text style={styles.textoInicio}>Registrar</Text>
+                <Text style={styles.campoTexto}>Foto de perfil</Text>
+                <ElegirFoto/>
+                {errors.foto && <Text style={styles.textoError}>{errors.foto.message}</Text>}
                 <Text style={styles.campoTexto}>Mail</Text>
                 <Controller
                 control={control}
@@ -83,28 +86,12 @@ export default function Login({ navigation }) {
                 )}
                 />
                 {errors.contrasena && <Text style={styles.textoError}>{errors.contrasena.message}</Text>}
-                <Text style={styles.campoTexto}>Foto de perfil</Text>
-                <Controller
-                control={control}
-                name='foto'
-                rules={{ required: 'Ingrese el link a la foto' }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                    <TextInput
-                    style={styles.input}
-                    placeholder='Foto de perfil'
-                    onChangeText={onChange}
-                    onBlur={onBlur}
-                    value={value}
-                    />
-                )}
-                />
-                <ElegirFoto/>
-                {errors.foto && <Text style={styles.textoError}>{errors.foto.message}</Text>}
-                <Pressable onPress={() => navigation.navigate('Iniciar sesión')}>
+
+                <Pressable onPress={() => navigation.goBack()}>
                     <Text style={styles.noCuenta}>Iniciar sesión</Text>
                 </Pressable>
                 <View style={styles.buttonCont}>
-                    <Pressable style={styles.boton} onPress={handleSubmit(onSubmit)}><Text style={styles.textButton}>Enviar</Text></Pressable>
+                    <Pressable style={styles.boton} onPress={handleSubmit(onSubmit)}><Text style={styles.textButton}>Registrar</Text></Pressable>
                 </View>
             </View>
         </View>

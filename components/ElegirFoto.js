@@ -35,10 +35,10 @@ export default function ElegirFoto() {
     return(
         <View style={styles.container}>
             <Pressable onPress={seleccionarDeGaleria} style={styles.buttonFoto}>
-                <Text>Abrir galería</Text>
+                <Text style={styles.textoPress}>Abrir galería</Text>
             </Pressable>
             <Pressable onPress={sacarFoto} style={styles.buttonFoto}>
-                <Text>Sacar foto</Text>
+                <Text style={styles.textoPress}>Sacar foto</Text>
             </Pressable>
             {imagen && (
                 <Image source={{uri: imagen}} style={styles.imagenSeleccionada}/>
@@ -64,6 +64,13 @@ const styles = StyleSheet.create({
         backgroundColor:'white',
         height: 40,
         fontSize: 15,
-        borderRadius:5
+        borderRadius:5,
+        justifyContent: "center",
+        margin: '0.5%',
+        border: '1px solid #30376e'
+    },
+    textoPress: {
+        textAlign: 'center',
+        color: '#30376e'
     }
 })
