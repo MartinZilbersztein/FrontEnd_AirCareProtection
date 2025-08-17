@@ -1,60 +1,35 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { TextInput, View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
-import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 import ElegirFoto from '../components/ElegirFoto';
 
-export default function Register({ navigation }) {
-    const { control, handleSubmit, formState: {errors} } = useForm({
+export default function AgregarDispositivo({ navigation }) {
+    const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues:{
             nombre: '',
-            mail: '',
-            contrasena: '',
+            descripcion: '',
             foto: ''
         }
     });
     const onSubmit = (data) => {
-        navigation.navigate('EnviadoExito');
-    }
+        // evitar "Cannot update a component ... while rendering a diferente componente"
+        // deferir la navegación al siguiente tick para no causar un setState durante el render
+        setTimeout(() => {
+            navigation.navigate('HomeMain');
+        }, 0);
+    };
     return (
-        <ScrollView
-            style={styles.container}
-            contentContainerStyle={styles.scrollContent}
-            keyboardShouldPersistTaps="handled"
-        >
+        <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
             <View style={styles.contenido}>
-                <Text style={styles.textoInicio}>Registrar</Text>
+                <Text style={styles.textoInicio}>Añadir dispositivo</Text>
                 <Text style={styles.campoTexto}>Foto de perfil</Text>
                 <ElegirFoto/>
                 {errors.foto && <Text style={styles.textoError}>{errors.foto.message}</Text>}
-                <Text style={styles.campoTexto}>Mail</Text>
-                <Controller
-                control={control}
-                name='mail'
-                rules={{
-                    required: 'Ingrese su mail',
-                    pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Email inválido',
-                    },
-                }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                    <TextInput
-                    style={styles.input}
-                    placeholder='Mail'
-                    onChangeText={onChange}
-                    onBlur={onBlur}
-                    value={value}
-                    />
-                )}
-                />
-                {errors.mail && <Text style={styles.textoError}>{errors.mail.message}</Text>}
-
                 <Text style={styles.campoTexto}>Nombre</Text>
                 <Controller
                 control={control}
                 name='nombre'
-                rules={{ required: 'Ingrese su nombre' }}
+                rules={{ required: 'Ingrese el nombre' }}
                 render={({ field: { onChange, onBlur, value } }) => (
                     <TextInput
                     style={styles.input}
@@ -66,31 +41,26 @@ export default function Register({ navigation }) {
                 )}
                 />
                 {errors.nombre && <Text style={styles.textoError}>{errors.nombre.message}</Text>}
-                <Text style={styles.campoTexto}>Contraseña</Text>
+                <Text style={styles.campoTexto}>Descripción</Text>
                 <Controller
                 control={control}
-                name='contrasena'
-                rules={{
-                    required: 'Ingrese su contraseña',
-                }}
+                name='descripcion'
+                rules={{ required: 'Ingrese la descripción' }}
                 render={({ field: { onChange, onBlur, value } }) => (
                     <TextInput
                     style={styles.input}
-                    placeholder='Contraseña'
+                    placeholder='Descripción (habitaciones)'
                     onChangeText={onChange}
                     onBlur={onBlur}
                     value={value}
-                    secureTextEntry={true} 
                     />
                 )}
                 />
-                {errors.contrasena && <Text style={styles.textoError}>{errors.contrasena.message}</Text>}
-
-                <Pressable onPress={() => navigation.goBack()}>
-                    <Text style={styles.noCuenta}>Iniciar sesión</Text>
-                </Pressable>
+                {errors.descripcion && <Text style={styles.textoError}>{errors.descripcion.message}</Text>}
                 <View style={styles.buttonCont}>
-                    <Pressable style={styles.boton} onPress={handleSubmit(onSubmit)}><Text style={styles.textButton}>Registrar</Text></Pressable>
+                    <Pressable style={styles.boton} onPress={handleSubmit(onSubmit)}>
+                        <Text style={styles.textButton}>Añadir</Text>
+                    </Pressable>
                 </View>
             </View>
         </ScrollView>

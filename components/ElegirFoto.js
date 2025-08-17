@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
-import { TextInput, Button, View, Text, StyleSheet } from 'react-native';
-import { Pressable } from "react-native-web";
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 
 export default function ElegirFoto() {
     const [imagen, setImagen] = useState(null);
@@ -14,7 +13,7 @@ export default function ElegirFoto() {
                 console.log('ImagePicker error: ', response.errorMessage);
             }
             else{
-                setImagen(response.assets[0].uri);
+                if (response.assets && response.assets[0]) setImagen(response.assets[0].uri);
             }
         })
     }
@@ -24,10 +23,10 @@ export default function ElegirFoto() {
                 console.log('El usuario canceló');
             }
             else if(response.errorMessage){
-                console.log('ImagePicker error: ', errorMessage);
+                console.log('ImagePicker error: ', response.errorMessage);
             }
             else{
-                setImagen(response.assets[0].uri);
+                if (response.assets && response.assets[0]) setImagen(response.assets[0].uri);
             }
         })
     }
@@ -55,19 +54,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     imagenSeleccionada:{
-        width: '30%',
-        borderRadius:50
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        marginTop: 8,
     },
     buttonFoto: {
         width: '50%',
-        border: '1px solid black',
+        borderWidth: 1,
+        borderColor: '#30376e',
         backgroundColor:'white',
         height: 40,
         fontSize: 15,
         borderRadius:5,
         justifyContent: "center",
-        margin: '0.5%',
-        border: '1px solid #30376e'
+        margin: 4,
     },
     textoPress: {
         textAlign: 'center',

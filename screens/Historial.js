@@ -1,9 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+
 export default function Historial() {
     const isAuthenticated = false;
     return (
-        <View></View>
+        <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
+            <Text>Historial</Text>
+        </ScrollView>
     );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, width: '100%' },
+    scrollContent: { paddingVertical: 12, paddingHorizontal: 12, paddingBottom: 40 },
+});
