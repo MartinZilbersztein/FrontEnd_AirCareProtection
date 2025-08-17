@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textoCardScene: {
-        fontSize: 18,
+        fontSize: 20,
         marginLeft: 20,
         color: 'white',
     },
